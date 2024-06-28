@@ -156,7 +156,7 @@ if(HAVE_LSTAT)
 endif()
 
 check_function_exists(gethostuuid HAVE_GETHOSTUUID)
-if(HAVE_GETHOSTUUID AND NOT ${CMAKE_SYSTEM_NAME} STREQUAL "iOS")
+if(HAVE_GETHOSTUUID AND NOT IOS)
     add_definitions(-DHAVE_GETHOSTUUID=1)
 endif()
 
@@ -401,11 +401,6 @@ if(WIN32)
         -DSQLITE_WIN32_USE_UUID=1)
 
     set(UUID_LIBRARIES Rpcrt4.lib)
-endif()
-
-if(APPLE)
-    # Universal bianry
-    set(CMAKE_OSX_ARCHITECTURES arm64 x86_64)
 endif()
 
 # Check the user defined sqlite config header file
